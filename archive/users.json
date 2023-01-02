@@ -1,0 +1,75 @@
+[{
+  "_id": {
+    "$oid": "63b3030665d50a95e62566b7"
+  },
+  "name": "Trong 1",
+  "role": "manager",
+  "tasks": [
+    {
+      "$oid": "63b3036465d50a95e62566c3"
+    },
+    {
+      "$oid": "63b3037265d50a95e62566c6"
+    }
+  ],
+  "isDeleted": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672676102948"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672676210477"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b3030c65d50a95e62566b9"
+  },
+  "name": "Trong 2",
+  "role": "employee",
+  "tasks": [
+    {
+      "$oid": "63b303a665d50a95e62566c9"
+    },
+    {
+      "$oid": "63b303ac65d50a95e62566cc"
+    },
+    {
+      "$oid": "63b303b165d50a95e62566cf"
+    }
+  ],
+  "isDeleted": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672676108637"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672676273985"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b3033c65d50a95e62566c0"
+  },
+  "name": "Trong 3",
+  "role": "employee",
+  "tasks": [],
+  "isDeleted": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672676156711"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672676156711"
+    }
+  },
+  "__v": 0
+}]

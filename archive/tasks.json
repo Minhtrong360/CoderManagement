@@ -1,0 +1,130 @@
+[{
+  "_id": {
+    "$oid": "63b3036465d50a95e62566c3"
+  },
+  "name": "new project 1",
+  "description": "create new project 1",
+  "status": "pending",
+  "user_name": {
+    "$oid": "63b3030665d50a95e62566b7"
+  },
+  "isDeleted": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672676196645"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672676196645"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b3037265d50a95e62566c6"
+  },
+  "name": "new project 2",
+  "description": "create new project 2",
+  "status": "pending",
+  "user_name": {
+    "$oid": "63b3030665d50a95e62566b7"
+  },
+  "isDeleted": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672676210472"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672676210472"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b303a665d50a95e62566c9"
+  },
+  "name": "Fix code 1",
+  "description": "Employee fixes codes 1",
+  "status": "pending",
+  "user_name": {
+    "$oid": "63b3030c65d50a95e62566b9"
+  },
+  "isDeleted": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672676262053"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672676262053"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b303ac65d50a95e62566cc"
+  },
+  "name": "Fix code 2",
+  "description": "Employee fixes codes 2",
+  "status": "pending",
+  "user_name": {
+    "$oid": "63b3030c65d50a95e62566b9"
+  },
+  "isDeleted": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672676268837"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672676268837"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b303b165d50a95e62566cf"
+  },
+  "name": "Fix code 3",
+  "description": "Employee fixes codes 3",
+  "status": "pending",
+  "user_name": {
+    "$oid": "63b3030c65d50a95e62566b9"
+  },
+  "isDeleted": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672676273982"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672676273982"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63b3042f90085add110b2c1e"
+  },
+  "name": "No assigned task 1",
+  "description": "Task is not assigned to anyone 1",
+  "status": "pending",
+  "isDeleted": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672676399181"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672676399181"
+    }
+  },
+  "__v": 0
+}]
