@@ -1,4 +1,5 @@
 const express = require("express");
+const { body } = require("express-validator");
 const {
   createUser,
   getSingleUserById,
@@ -16,7 +17,7 @@ const router = express.Router();
  * @access private, manager
  * @requiredBody: name
  */
-router.post("/", createUser);
+router.post("/", body("name").isString(), createUser);
 
 // READ
 /**

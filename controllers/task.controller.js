@@ -5,6 +5,15 @@ const { sendResponse, AppError } = require("../helpers/utils.js");
 const taskController = {};
 let taskStatus = ["pending", "working", "review", "done", "archive"];
 
+const ObjectId = require("mongoose").Types.ObjectId;
+function isValidObjectId(id) {
+  if (ObjectId.isValid(id)) {
+    if (String(new ObjectId(id)) === id) return true;
+    return false;
+  }
+  return false;
+}
+
 taskController.createTask = async (req, res, next) => {
   const info = req.body;
   try {
@@ -22,6 +31,13 @@ taskController.createTask = async (req, res, next) => {
         "Create Task Error. The task's status is not allowed."
       );
     }
+    const foundAll = await User.find({});
+    if (foundAll.filter((item) => (item.name = info.name))) {
+      const error = new Error("Task existed. Please change task's name.");
+      error.statusCode = 404;
+      throw error;
+    }
+
     const created = await Task.create(info);
 
     await User.findByIdAndUpdate(info.user_name, {
@@ -76,12 +92,18 @@ taskController.getSingleTask = async (req, res, next) => {
 
   // empty target mean delete nothing
   const targetId = req.params.id;
-  console.log("first", targetId);
+
   try {
     //mongoose query
     if (!targetId) {
       const error = new Error("Missing required data.");
       error.statusCode = 404;
+      throw error;
+    }
+
+    if (!isValidObjectId(targetId)) {
+      const error = new Error("Id must be ObjectID");
+      error.statusCode = 400;
       throw error;
     }
 
@@ -122,7 +144,11 @@ taskController.editTask = async (req, res, next) => {
       error.statusCode = 404;
       throw error;
     }
-
+    if (!isValidObjectId(targetId)) {
+      const error = new Error("Id must be ObjectID");
+      error.statusCode = 400;
+      throw error;
+    }
     const findID = await Task.findById(targetId);
 
     //mongoose query
@@ -173,6 +199,11 @@ taskController.assignTask = async (req, res, next) => {
       error.statusCode = 404;
       throw error;
     }
+    if (!isValidObjectId(targetId)) {
+      const error = new Error("Id must be ObjectID");
+      error.statusCode = 400;
+      throw error;
+    }
 
     const findID = await Task.findById(targetId);
 
@@ -217,6 +248,11 @@ taskController.deleteTask = async (req, res, next) => {
     if (!targetId) {
       const error = new Error("Missing required data.");
       error.statusCode = 404;
+      throw error;
+    }
+    if (!isValidObjectId(targetId)) {
+      const error = new Error("Id must be ObjectID");
+      error.statusCode = 400;
       throw error;
     }
 

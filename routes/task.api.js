@@ -7,6 +7,7 @@ const {
   deleteTask,
   assignTask,
 } = require("../controllers/task.controller");
+const { body } = require("express-validator");
 const router = express.Router();
 
 // CREATE
@@ -16,7 +17,7 @@ const router = express.Router();
  * @access private, manager
  * @requiredBody: name
  */
-router.post("/", createTask);
+router.post("/", body("name").isString(), createTask);
 
 // READ
 /**

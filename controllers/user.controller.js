@@ -1,21 +1,47 @@
 const mongoose = require("mongoose");
 const User = require("../models/User");
 const { sendResponse, AppError } = require("../helpers/utils.js");
+const { validationResult } = require("express-validator");
 const userController = {};
 const util = require("util");
 // const { body, validationResult } = require('express-validator');
 let roleType = ["employee", "manager"];
 
+const ObjectId = require("mongoose").Types.ObjectId;
+function isValidObjectId(id) {
+  if (ObjectId.isValid(id)) {
+    if (String(new ObjectId(id)) === id) return true;
+    return false;
+  }
+  return false;
+}
+
 userController.createUser = async (req, res, next) => {
   const info = req.body;
+  const errors = validationResult(req);
   try {
     // YOUR CODE HERE
-    if (!info.name || !util.isString(info.name))
+    if (!errors.isEmpty()) {
       throw new AppError(
         402,
-        "Bad Request name",
+        "Bad Request. Missing name of user.",
         "Create User Error. Missing required data."
       );
+    }
+
+    const foundAll = await User.find({});
+    if (foundAll.filter((item) => (item.name = info.name))) {
+      const error = new Error("User existed. Please change user's name.");
+      error.statusCode = 404;
+      throw error;
+    }
+
+    // if (!info.name || !util.isString(info.name))
+    //   throw new AppError(
+    //     402,
+    //     "Bad Request name",
+    //     "Create User Error. Missing required data."
+    //   );
 
     if (!info.role) {
       info.role = "employee";
@@ -152,6 +178,16 @@ userController.editUser = async (req, res, next) => {
   //options allow you to modify query. e.g new true return lastest update of data
   const options = { new: true };
   try {
+    if (!targetId) {
+      const error = new Error("Missing required data.");
+      error.statusCode = 404;
+      throw error;
+    }
+    if (!isValidObjectId(targetId)) {
+      const error = new Error("Id must be ObjectID");
+      error.statusCode = 400;
+      throw error;
+    }
     const findID = await User.findById(targetId);
     //mongoose query
     if (!updateInfo.name || !updateInfo.role) {
@@ -194,14 +230,19 @@ userController.deleteUser = async (req, res, next) => {
   //options allow you to modify query. e.g new true return lastest update of data
   const options = { new: true };
   try {
-    const findID = await User.findById(targetId);
-    //mongoose query
-
     if (!targetId) {
       const error = new Error("Missing required data.");
       error.statusCode = 404;
       throw error;
     }
+
+    if (!isValidObjectId(targetId)) {
+      const error = new Error("Id must be ObjectID");
+      error.statusCode = 400;
+      throw error;
+    }
+    const findID = await User.findById(targetId);
+    //mongoose query
 
     if (!findID || findID.isDeleted) {
       const error = new Error("User does not exist.");
